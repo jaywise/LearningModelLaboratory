@@ -1,0 +1,23 @@
+extends layout
+
+block title
+  h2 Create a Learning Model
+  h3 Let's generate our own learning model.
+  h4 Please provide a 50 word or less description of your learning model. Please include a title and description below:
+
+block content
+  h2 Add a Model
+
+  .d-flex.justify-content-center
+      if flashMsg.length > 0
+        .alert.alert-danger <strong></strong>#{flashMsg}
+      form(method='POST' action="/create")
+        div.form-group
+          label(for='title')
+            strong Learning Model Title :
+          input#name.form-control(type='text', placeholder='Title' name='title')
+        div.form-group
+          label(for='description')
+            strong Learning Model Description:
+          input#email.form-control(type='text', placeholder='Description' name='description')
+        button.btn.btn-primary(type='submit') Submit your model

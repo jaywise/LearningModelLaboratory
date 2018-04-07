@@ -1,0 +1,17 @@
+extends layout
+
+block title
+  h2 Review your learning models
+  h3 Let's take a look at your collected learning models
+  h4 Comment or share your aggregated learning models below:
+
+block content
+  .row
+  each learningModel in learningModels
+   .col-sm-3
+     p Title:  #{learningModel.title}
+     p Description: #{learningModel.description}
+     p Uploaded: #{learningModel.createdAt}
+     a(href='/review/' + learningModel._id) Edit Details
+  H3 Want to add a learning model?
+  a(href='/create/') Click here!
