@@ -10,7 +10,15 @@ var upload = multer({
 const PhotoService = photoController.PhotoService;
 
 router.use((req, res, next)=>{
-  res.set({'Content-type':'application/json'});
+  res.set({ // set content-type for all api requests
+    'Access-Control-Allow-Origin':'*',
+    'Access-Control-Allow-Methods':'GET, PUT, POST, DELETE, OPTIONS',
+    'Access-Control-Allow-Headers':'Content-type, Access-Control-Allow-Headers',
+    'Content-type':'application/json'
+  });
+  if(req.method == 'OPTIONS'){
+    return res.status(200).end();
+  }
   next();
 });
 
@@ -76,8 +84,8 @@ router.put('/:photoid', (req, res, next)=>{
     })
 });
 
-//  /photos/:photoid -- DELETE to update
-router.put('/:photoid', (req, res, next)=>{
+//  /photos/:photoid -- DELETE to erase
+router.delete('/:photoid', (req, res, next)=>{
   console.log(`deleting ${req.params.photoid}`);
   let putData = req.body;
   PhotoService.delete(req.params.photoid)

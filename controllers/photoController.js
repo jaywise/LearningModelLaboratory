@@ -48,17 +48,17 @@ class PhotoService{
 
   //   update
   static update(id, data){
-      return Photo.findById(id)
+      return Photo.findById(id)   // finds photo in DB and passes to promise
        .then((photo)=>{
          photo.set(data);
-         photo.save();
+         photo.save();  // saves to DB
          return photo;
        });
   }
 
   //  delete
   static delete(id){
-    return Photo.findByIdAndRemove({_id: id})
+    return Photo.findByIdAndRemove({_id: id})   // matches via URL params passed in via function's parameter
       .then((obj)=>{
         return obj;
     })

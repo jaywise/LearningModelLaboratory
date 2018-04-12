@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta charset="UTF-8">
+      <title>Test page for REST API data</title>
+      <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+      <script type="text/javascript" src="js/crud.js"></script>
+  </head>
+
+  <body>
+    <form id="LMForm" method="get" action="#"
+      <p>
+        <button id="readBtn">Grab All Learning Models</button>
+      </p>
+      <textarea id="LMDisplay" name="textDisplay" col="50" rows="20">
+      </textarea>
+      <hr />
+      <h3>Generate or modify one of your learning models</h3>
+      <p>
+        <label for="LMID">Learning model ID (leave blank if generating):</label>
+        <input type="text" id="LMID" name="LMID" value="" />
+        <br />
+        <label for="LMTitle">Title:</label>
+        <input type="text" id="LMTitle" name="LMTitle" value="" />
+        <br />
+        <label for="LMDescription">Description:</label>
+        <input type="text" id="LMDescription" name="LMDescription" value="" />
+        <br />
+        <button id="createBtn">Generate learning model</button>
+        <button id="updateBtn">Update learning model</button>
+      </p>
+      <hr />
+      <h3>Delete</h3>
+      <p>
+        <label for="deleteID">ID:</label>
+        <input type="text" id="deleteID" name="deleteID" value="">
+        <button id="deleteBtn">Delete</button>
+      </p>
+    </form>
+  </body>
+</html>

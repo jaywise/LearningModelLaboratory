@@ -7,6 +7,7 @@ var review = require('./routes/review');
 var home = require('./routes/home');
 var create = require('./routes/create');
 var apiphotos = require('./routes/api/api-photos');
+var apireview = require('./routes/api/api-review');
 var photos = require('./routes/photos');
 var bodyparser = require('body-parser');
 var cookieParser = require('cookie-parser');
@@ -15,7 +16,7 @@ var mongoose = require("mongoose");
 require('dotenv').config(); //package to conceal DB credentials
 
 //set up mongoose connection
-mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PWD}@joshcluster1-shard-00-00-52qg0.mongodb.net:27017,joshcluster1-shard-00-01-52qg0.mongodb.net:27017,joshcluster1-shard-00-02-52qg0.mongodb.net:27017/LearningModelLaboratory?ssl=true&replicaSet=JoshCluster1-shard-0&authSource=admin`)
+mongoose.connect(`mongodb://${process.env.DB_USER}:${process.env.DB_PWD}@joshcluster1-shard-00-00-52qg0.mongodb.net:27017,joshcluster1-shard-00-01-52qg0.mongodb.net:27017,joshcluster1-shard-00-02-52qg0.mongodb.net:27017/cscie31?ssl=true&replicaSet=JoshCluster1-shard-0&authSource=admin`)
   .then(() => { console.log('DB connection successful!');
   })
   .catch((err) => console.error(err));
@@ -30,6 +31,7 @@ app.use(session({
   saveUninitialized: "true"
 }));
 app.use(bodyparser.urlencoded({extended: false}));
+app.use(bodyparser.json());
 
 // use pug view engine
 app.set('views', path.join(__dirname, 'views'));
@@ -44,6 +46,7 @@ app.use('/review', review);
 app.use('/home', home);
 app.use('/', home);
 app.use('/api/photos', apiphotos);
+app.use('/api/review', apireview);
 
 // catch any remaining routing errors
 app.use((req, res, next)=>{

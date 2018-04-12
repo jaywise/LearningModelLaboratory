@@ -24,17 +24,6 @@ router.get('/', (req, res, next)=>{
     });
 });
 
-//finds and deletes learning model
-router.post('/delete/:LMid', (req, res, next)=>{
-  LMModel.findByIdAndRemove(req.params.LMid)  //finds model via URL, then deletes it
-  .then((q)=>{
-    console.log("deleted: " + q)
-    res.redirect('/review');
-  }).catch((err)=>{
-    console.log(err);
-  })
-});
-
 //reads learning model ID data from DB
 router.get('/:LMid', (req, res, next)=>{
   console.log("finding " + req.params.LMid);
@@ -65,6 +54,17 @@ router.post('/:LMid', (req, res, next)=>{
     res.redirect('/review');  //generate updated data via review pug template
   }).catch((err)=>{
       if(err) console.log(err);
+  })
+});
+
+//finds and deletes learning model
+router.post('/delete/:LMid', (req, res, next)=>{
+  LMModel.findByIdAndRemove(req.params.LMid)  //finds model via URL, then deletes it
+  .then((q)=>{
+    console.log("deleted: " + q)
+    res.redirect('/review');
+  }).catch((err)=>{
+    console.log(err);
   })
 });
 
